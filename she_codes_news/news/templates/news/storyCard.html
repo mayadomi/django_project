@@ -1,11 +1,11 @@
 <div class="story-card" id="story-card-{{ position }}">
     <a href="{% url 'news:story' story.id %}">
-        {% if position < 5 %}
-            <img src="../static/news/images/placeholder-{{ position }}.jpg">
-        {% elif position < 6 %}ss
-            <img src="https://picsum.photos/600">
-        {% else %}
+        {% if story.image_url == None and story.id < 6 %}
+            <img src="../static/news/images/placeholder-{{ story.id }}.jpg">
+        {% elif story.image_url != None %}
             <img src="{{story.image_url}}">
+        {% else %}
+            <img src="https://picsum.photos/600">
         {% endif %}
         <div class="story-card-text">
             <h3>{{ story.title }}</h3>
