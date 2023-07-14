@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% comment %} To include any specific styling/avatar pic
+{% load static %}
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'news/styles.css'%}">
+{% endblock %} {% endcomment %}
+
+{% block content %}
+<h2>My Account</h2>
+<div id="user-account">
+    <p>Username: {{ user.username }}</p>
+    <div id="user-identifiers">
+    <p>User email: {{ user.email }}
+    </div>
+</div>
+{% endblock %}
