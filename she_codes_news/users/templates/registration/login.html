@@ -6,4 +6,7 @@
         {{ form.as_p }}
             <button type="submit">Login</button>
 </form>
+<h2>Not yet a user?<h2>
+    {% comment %} {% include "../users/createAccount.html" %} {% endcomment %}
+    <a href={% url 'users:createAccount' %}>Create an account</a>
 {% endblock %}
