@@ -5,6 +5,7 @@
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.views import generic
+from news.models import NewsStory
 from .models import CustomUser
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 
@@ -13,7 +14,16 @@ class CreateAccountView(CreateView):
     success_url = reverse_lazy('login')
     template_name = 'users/createAccount.html'
 
+class StoriesList(generic.ListView):
+    model = NewsStory
+
 class ViewAccount(generic.CreateView):
     form_class = CustomUserChangeForm
     template_name = 'users/viewAccount.html'
     success_url = reverse_lazy('view-account')
+
+    def get_context_data(self, **kwargs):
+        
+        context = super().get_context_data(**kwargs)
+        context['user_stories'] = NewsStory.objects.filter(author_id__exact=self.request.user.id)
+        return context
