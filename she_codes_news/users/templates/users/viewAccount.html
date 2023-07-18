@@ -6,16 +6,26 @@
 {% endblock %} {% endcomment %}
 
 {% block content %}
-<h2>My Account</h2>
-<div id="user-account">
-    <p>Username: {{ user.username }}</p>
-    <div id="user-identifiers">
-    <p>User email: {{ user.email }}
+{% if request.user.is_authenticated %}
+
+    <h2>My Account</h2>
+    <div id="user-account">
+        <p>Username: {{ user.username }}</p>
+        <div id="user-identifiers">
+        <p>User email: {{ user.email }}
+        </div>
     </div>
-</div>
-<div id="user-stories">
-    {% for story in user_stories %}
-        <p>{{ story.title }}</p>
-    {% endfor %}
-</div>
+    <div id="user-stories">
+        <h2>My Stories</h2>
+        {% for story in user_stories %}
+            {% comment %} <p>{{ story.title }}</p> {% endcomment %}
+            {% include "news/storyCard.html" with story=story %}
+        {% endfor %}
+    </div>
+
+    {% else %}
+        <h2>Oops you're meant to be signed in to see this....</h2>
+        <a href="{% url 'users:createAccount'%}">Create an account?</a>
+
+    {% endif %}
 {% endblock %}

@@ -7,4 +7,4 @@ class CustomUser(AbstractUser):
     pass
     
     def __str__(self):
-        return self.username, self.pk
+        return self.username

@@ -1,11 +1,13 @@
 from django.urls import path
 from . import views
+from users import views as users_views
 
 app_name = 'news'
 
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('<int:pk>/', views.StoryView.as_view(), name='story'),
-    path('add-story/', views.AddStoryView.as_view(), name='newStory')
-    
+    path('add-story/', views.AddStoryView.as_view(), name='newStory'),
+    path('create-account/', users_views.CreateAccountView.as_view(), name='createAccount' )
+
 ]
