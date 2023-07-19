@@ -5,6 +5,14 @@
 {% endblock %}
 
 {% block content %}
+<div id ="story-editing">
+    {% if request.user.is_authenticated %}
+        {% if request.user == story.author %}
+            <a href= "{% url 'news:editStory' story.id %}">Edit Post</a>
+            <a href= "{% url 'news:deleteStory' story.id %}">Delete Post</a>
+        {% endif %}
+    {% endif %}
+</div>
 <div id="story-wrapper">
     <h2>{{ story.title }}</h2>
     <h4>{{ story.author }}</h4>

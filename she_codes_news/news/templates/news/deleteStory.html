@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    {% comment %} {{ form.as_p }} {% endcomment %}
+
+    <p>Confirm deletion of story "{{ object.title }}"?</p>
+
+   
+    <input type="submit" value="Yes, kill it">
+    {% include "./storyCard.html" with story=object %}
+
+</form>
+
+{% endblock %}

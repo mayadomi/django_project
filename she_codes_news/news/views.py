@@ -1,7 +1,7 @@
 from django.views import generic
 from django.urls import reverse_lazy
 from .models import NewsStory
-from .forms import StoryForm
+from .forms import StoryForm, EditStoryForm
 
 
 class IndexView(generic.ListView):
@@ -32,3 +32,24 @@ class AddStoryView(generic.CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+class EditStoryView(generic.UpdateView):
+    model = NewsStory
+    form_class = EditStoryForm
+    template_name = 'news/editStory.html'
+    # success_url = reverse_lazy('news:story', kwargs={'id': self.object.id})
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse_lazy('news:story', kwargs={'pk': self.kwargs['pk']})
+
+class DeleteStoryView(generic.DeleteView):
+    model = NewsStory
+    template_name = 'news/deleteStory.html'
+    success_url = reverse_lazy('news:index')
+
+    # def form_valid(self, form):
+    #         form.instance.author = self.request.user
+    #         return super().form_valid(form)
