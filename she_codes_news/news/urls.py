@@ -11,4 +11,5 @@ urlpatterns = [
     path('create-account/', users_views.CreateAccountView.as_view(), name='createAccount' ),
     path('edit-story/<int:pk>/', views.EditStoryView.as_view(), name='editStory'),
     path('delete-story/<int:pk>/', views.DeleteStoryView.as_view(), name='deleteStory'),
+    path('<int:pk>/favorite/',views.FavoriteStoryView.as_view(), name="favoriteStory"),
 ]

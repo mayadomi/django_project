@@ -1,4 +1,8 @@
+from typing import Any
+from django.forms.models import BaseModelForm
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.views import generic
+from django.views import View
 from django.urls import reverse_lazy
 from .models import NewsStory
 from .forms import StoryForm, EditStoryForm
@@ -53,3 +57,15 @@ class DeleteStoryView(generic.DeleteView):
     # def form_valid(self, form):
     #         form.instance.author = self.request.user
     #         return super().form_valid(form)
+
+class FavoriteStoryView(generic.detail.SingleObjectMixin, View):
+    model = NewsStory
+
+    def get(self, request, *args, **kwargs):
+        
+        self.object = self.get_object()
+        self.object.favorites.add(self.request.user.id)
+        print(self.request.user.id)
+
+        return HttpResponseRedirect(reverse_lazy("news:story", kwargs={"pk": self.object.pk}))
+
