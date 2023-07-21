@@ -68,10 +68,23 @@ class FavoriteStoryView(generic.detail.SingleObjectMixin, View):
 
         self.object = self.get_object()
 
+        # Was trying to figure out a way to 'favorite/unfavorite' in the home
+        # index page without it redirecting to the story, and only thing that came to mind
+        # was to try and find the referring page... thought I could use the templates name but
+        # that does what I initally got it to redirect from.... so played and saw that 
+        # referrer seemed to work.... pretty sure it's not the best way to do this...but it works.
+
+        if self.request.headers.get('Referer').endswith('/news/'):
+            # return to index/home page
+            response = reverse_lazy("news:index")
+        else:
+            # the only other place calling it at the moment is from story details....
+            response = reverse_lazy("news:story", kwargs={"pk": self.object.pk})
+
         if self.object.favorites.filter(id=self.request.user.id):
             self.object.favorites.remove(self.request.user.id)
         else:
             self.object.favorites.add(self.request.user.id)
 
-        return HttpResponseRedirect(reverse_lazy("news:story", kwargs={"pk": self.object.pk}))
+        return HttpResponseRedirect(response)
 
