@@ -1,0 +1,35 @@
+#my-stories {
+    padding: 36px;
+}
+
+a {
+    margin: 0px;
+}
+
+h4, p {
+    margin: 5px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-top: 16px;
+    margin-left: 5px;
+}
+
+h2 {
+    margin-bottom: 0px;
+}
+
+img {
+     margin-left: 5px;
+}
+
+#favorites {
+    padding: 36px;
+}
+
+#content {
+    display: inline-flex;
+    width: 100%;
+}
+

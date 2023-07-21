@@ -2,6 +2,8 @@
 
 # Create your views here.
 
+from typing import Any, Dict
+from django.db.models.query import QuerySet
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.views import generic
@@ -25,5 +27,11 @@ class ViewAccount(generic.CreateView):
     def get_context_data(self, **kwargs):
         
         context = super().get_context_data(**kwargs)
+
         context['user_stories'] = NewsStory.objects.filter(author_id__exact=self.request.user.id)
+        
+        users = CustomUser.objects.get(id__exact=self.request.user.id)
+        context['my_favorites'] = users.favorites.all()
+
         return context
+

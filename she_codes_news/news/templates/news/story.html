@@ -11,6 +11,12 @@
             <a href= "{% url 'news:editStory' story.id %}">Edit Post</a>
             <a href= "{% url 'news:deleteStory' story.id %}">Delete Post</a>
         {% endif %}
+        {% if request.user in story.favorites.all %}
+            <a href= "{% url 'news:favoriteStory' story.id %}">Unfavorite</a>
+        {% else %}
+            <a href= "{% url 'news:favoriteStory' story.id %}">Favorite</a>
+        {% endif %}
+            
     {% endif %}
 </div>
 <div id="story-wrapper">

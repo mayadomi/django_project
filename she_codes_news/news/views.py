@@ -1,4 +1,5 @@
 from typing import Any
+from django.db import models
 from django.forms.models import BaseModelForm
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.views import generic
@@ -60,12 +61,17 @@ class DeleteStoryView(generic.DeleteView):
 
 class FavoriteStoryView(generic.detail.SingleObjectMixin, View):
     model = NewsStory
+    template_name = 'news/story.html'
+    context_object_name = 'story'
 
     def get(self, request, *args, **kwargs):
-        
+
         self.object = self.get_object()
-        self.object.favorites.add(self.request.user.id)
-        print(self.request.user.id)
+
+        if self.object.favorites.filter(id=self.request.user.id):
+            self.object.favorites.remove(self.request.user.id)
+        else:
+            self.object.favorites.add(self.request.user.id)
 
         return HttpResponseRedirect(reverse_lazy("news:story", kwargs={"pk": self.object.pk}))
 
