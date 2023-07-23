@@ -1,11 +1,9 @@
 <div class="story-card" id="story-card-{{ position }}">
     <a href="{% url 'news:story' story.id %}">
-        {% if story.image_url == None and story.id < 6 %}
-            <img src="../static/news/images/placeholder-{{ story.id }}.jpg">
-        {% elif story.image_url != None %}
+        {% if story.image_url == None %}
+            <img src="https://media.istockphoto.com/id/1287429074/vector/funny-404-design-template-with-a-cyclist-falling-from-a-bicycle-concept-of-unusual-original.jpg">
+        {% else  %}
             <img src="{{story.image_url}}" width="100" height="100">
-        {% else %}
-            <img src="https://picsum.photos/600">
         {% endif %}
         <div class="story-card-text">
             <h3>{{ story.title }}</h3>
@@ -13,9 +11,11 @@
             <h4>{{ story.pub_date }}</h4>
         </div>
     </a>
-    {% if request.user in story.favorites.all %}
-        <a href= "{% url 'news:favoriteStory' story.id %}">Unfavorite</a>
-    {% else %}
-        <a href= "{% url 'news:favoriteStory' story.id %}">Favorite</a>
+    {% if request.user.is_authenticated %}
+        {% if request.user in story.favorites.all %}
+            <a href= "{% url 'news:favoriteStory' story.id %}">Unfavorite</a>
+        {% else %}
+            <a href= "{% url 'news:favoriteStory' story.id %}">Favorite</a>
+        {% endif %}
     {% endif %}
 </div>

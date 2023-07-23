@@ -24,11 +24,9 @@
     <h4>{{ story.author }}</h4>
     <div id="story-content">
         {% if story.image_url == None %}
-            <img src="{% static '/news/images/placeholder-' %}{{story.id}}.jpg">
-        {% elif story.image_url != None %}
+        <img src="https://media.istockphoto.com/id/1287429074/vector/funny-404-design-template-with-a-cyclist-falling-from-a-bicycle-concept-of-unusual-original.jpg">
+        {% else  %}
             <img src="{{story.image_url}}">
-        {% else %}
-            <img src="https://picsum.photos/600">
         {% endif %}
             {% comment %} <img src="{% static '/news/images/placeholder-5.jpg' %}"> {% endcomment %}
         {{ story.content|linebreaks }}
