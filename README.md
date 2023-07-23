@@ -52,14 +52,14 @@ This was completed by creating a new html template and view class to pull inform
 ![The view account page ](./readme_images/image5_view_account_page.PNG)
 
 - [x] "Create Account" page
-In a similar this was created alongside the 'view account' page and uses the Django ootb UserCreationForm and CreateView to allow users to sign up. Some login was also added to the base and login html templates to show 'login' or 'sign-up' options depending on user authentication
+In a similar fashion this was created alongside the 'view account' page and uses the Django ootb UserCreationForm and CreateView to allow users to sign up. Some logic was also added to the base and login html templates to show 'login' or 'sign-up' options depending on user authentication
 ![ An image of the create account page ](./readme_images/image6_create_account_page.PNG)
 
 - [x] View stories by author
-This was implemented through the authenticated user, but ran out of time to figure out how to do this via search/dropdown/link if a user is anonymous (was aiming to do this while do the article categories, but couldn't quite there)
+This was implemented through the authenticated user, but ran out of time to figure out how to do this via search/dropdown/link if a user is anonymous (was aiming to do this while do the article categories, but couldn't quite get there)
 ![ Image of the user's own stories ](./readme_images/image7_stories_by_author.PNG)
 
-- [x] "Log-in" button only visible when no user is logged in/"Log-out" buttononly visible when a user *is* logged in
+- [x] "Log-in" button only visible when no user is logged in/"Log-out" button only visible when a user *is* logged in.
 This was bundled with the login/account view step 😄
 ![ Image of the login/logout states and the login page](./readme_images/image4_login_and_out.png)
 
