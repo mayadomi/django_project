@@ -1,4 +1,4 @@
-# {{ Maya Dominice }} - She Codes Django Project
+# Maya Dominice - She Codes Django Project
 
 ## About This Project
 The project is an extension of the template provided by the She Codes Australia course and is based around a news/blog site, with features/functionality added to help build out the addition, editing and deleting of posts as well as creating accounts. 
@@ -29,19 +29,17 @@ After migration, run the Django server with the command `python manage.py runser
 
 ## Database Schema!
 Wasn't entirely sure how to explain the 'manytomany' favorites field in a diagram....But hopefullly it sort of makes sense!
-![ An attempt at an ERD ]( ./readme_images/image_erd.png)
+![An attempt at an ERD ]( ./readme_images/image_erd.png)
 
 ## Project Features
 - [x] Order stories by date
 This was implemented in the news app views.py with the following line 
 `NewsStory.objects.order_by('-pub_date').all()[:4]` for the 'latest stories' component.
-
-![ Image of the homepage, showing latest stories ordered by date ](./readme_images/image1_stories_ordered_by_date.png)
+![Image of the homepage, showing latest stories ordered by date ](./readme_images/image1_stories_ordered_by_date.png)
 
 - [x] Styled "new story" form
 This was implemented by using the 'CreateView' class, along with html templates and form. It was further customised so that only authenticated users could access the page.
-
-![ Image of the 'Create story' page ](./readme_images/image2_create_story.png )
+![Image of the 'Create story' page ](./readme_images/image2_create_story.png )
 
 - [x] Story images
 The form was altered to allow users to add a URL to an image. This was acheived using the URLField type and altering the html template logic to show the image URL. I would have liked to include a test/logic to check the URL was returning a valid image (instead of eg base64), and if not then present the user a default stored image, but ran out of time 😞
@@ -49,12 +47,11 @@ The form was altered to allow users to add a URL to an image. This was acheived 
 
 - [x] Log-in/log-out
 A login/logout link/button was created by generating a new app 'users' and then using the Django 'requests' (magic) to check in the html wheather or not a user was logged in and to present the relevant text/link. The login page was implemented with forms/html and the ootb functionality.
-
-![ Image of the login/logout states and the login page](./readme/image4_login_and_out.png)
+![Image of the login/logout states and the login page](./readme_images/image4_login_and_out.png)
 
 - [x] "Account view" page
 This was completed by creating a new html template and view class to pull information about the user and was then extended to show the users stories, and the stories they'd favorited.
-![ The view account page ](./readme_images/image5_view_account_page.PNG)
+![The view account page ](./readme_images/image5_view_account_page.PNG)
 
 - [x] "Create Account" page
 In a similar this was created alongside the 'view account' page and uses the Django ootb UserCreationForm and CreateView to allow users to sign up. Some login was also added to the base and login html templates to show 'login' or 'sign-up' options depending on user authentication
@@ -76,7 +73,6 @@ I approached this by using the same request.user.is_authenticated approach in th
 - [ ] Add categories to the stories and allow the user to search for stories bycategory.
 Didn't quite get to this one - next time :D
 
-
 - [x] Add the ability to update and delete stories (consider permissions - whoshould be allowed to update or and/or delete stories).
 I enabled this through the 'story detail' html templalte using the same request.user.is_authenticated logic to control access to the edit/delete links. 
 
@@ -91,7 +87,6 @@ If another user logged in:
 
 
 - [x] Add the ability to “favourite” stories and see a page with your favouritestories.
-
 This was hard! I think I sort of got it to work (with final bit of help from wonderful Slack community). I created a new field in the news app model for 'favorites' which was a ManyToMany field and linked to user app tables. I then used the same logic of 'is user authenticated' in the html to alternate showing/hiding the option to favorite a story. I also extended this to a users 'view account' page to show their favorited stories.
 
 Homepage version
