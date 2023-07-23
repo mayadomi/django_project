@@ -28,7 +28,8 @@ After migration, run the Django server with the command `python manage.py runser
 
 
 ## Database Schema!
-[ {{ My ERD }} ]( {{ ./relative_path_to_your_entity_relationship_diagram }} )
+Wasn't entirely sure how to explain the 'manytomany' favorites field in a diagram....But hopefullly it sort of makes sense!
+[ An ttempt at an ERD ]( ./readme_images/image_erd.png)
 
 ## Project Features
 - [x] Order stories by date
