@@ -24,8 +24,6 @@ Once completed, prepare the Django project through the migration steps:
 
 After migration, run the Django server with the command `python manage.py runserver` and go to http://127.0.0.1:8000/news/
 
-{{Give a quick step-by-step guide on how to download and run your codebase.It's ok to assume the reader is another developer here, so don't feel like youhave to explain what a virtual environment is, etc.Give directions like "clone the repo to your local machine", "create a virtualenvironment", "migrate the database", etc. When you need to specify terminal commands, you can surround them withbackticks, like so: `python manage.py runserver`. This formats them ascode in the markdown document. (The backtick key is to the left of thenumber 1 at the top of your keyboard.)}}
-
 
 ## Database Schema!
 Wasn't entirely sure how to explain the 'manytomany' favorites field in a diagram....But hopefullly it sort of makes sense!
@@ -63,7 +61,7 @@ This was implemented through the authenticated user, but ran out of time to figu
 
 - [x] "Log-in" button only visible when no user is logged in/"Log-out" buttononly visible when a user *is* logged in
 This was bundled with the login/account view step 😄
-![ Image of the login/logout states and the login page](./readme/image4_login_and_out.png)
+![ Image of the login/logout states and the login page](./readme_images/image4_login_and_out.png)
 
 - [x] "Create Story" functionality only available when user is logged in
 I approached this by using the same request.user.is_authenticated approach in the html templates. I wanted to include a link to create a story in the 'view account' page but only realised I forgot to do it as I type this and it's like....11:30 :-/
@@ -74,26 +72,25 @@ I approached this by using the same request.user.is_authenticated approach in th
 Didn't quite get to this one - next time :D
 
 - [x] Add the ability to update and delete stories (consider permissions - whoshould be allowed to update or and/or delete stories).
-I enabled this through the 'story detail' html templalte using the same request.user.is_authenticated logic to control access to the edit/delete links. 
+I enabled this through the 'story detail' html templalte using the same request.user.is_authenticated logic to control access to the edit/delete links.
+    If author is logged in:
+    ![ Image of story detail view with edit/delete options if user logged in ](./readme_images/image8_edit_delete_story.PNG)
 
-If author is logged in:
-![ Image of story detail view with edit/delete options if user logged in ](./readme_images/image8_edit_delete_story.PNG)
+    If no one logged in:
+    ![ Image of story detail view with edit/delete options if no user logged in ](./readme_images/image9_edit_delete_story_not_loggedin.PNG)
 
-If no one logged in:
-![ Image of story detail view with edit/delete options if no user logged in ](./readme_images/image9_edit_delete_story_not_loggedin.PNG)
-
-If another user logged in:
-![ Image of story detail view with edit/delete options if no user logged in ](./readme_images/image10_edit_delete_story_different_loggedin.PNG)
+    If another user logged in:
+    ![ Image of story detail view with edit/delete options if no user logged in ](./readme_images/image10_edit_delete_story_different_loggedin.PNG)
 
 
 - [x] Add the ability to “favourite” stories and see a page with your favouritestories.
 This was hard! I think I sort of got it to work (with final bit of help from wonderful Slack community). I created a new field in the news app model for 'favorites' which was a ManyToMany field and linked to user app tables. I then used the same logic of 'is user authenticated' in the html to alternate showing/hiding the option to favorite a story. I also extended this to a users 'view account' page to show their favorited stories.
 
-Homepage version
-![ Homepage with stories showing favorite/unfavorite for a logged in user](./readme_images/image11_loggedin_favorited_unfavorited.PNG)
+    Homepage version
+    ![ Homepage with stories showing favorite/unfavorite for a logged in user](./readme_images/image11_loggedin_favorited_unfavorited.PNG)
 
-View account version
-![ View account with list of favorited stories for a logged in user](./readme_images/image12_loggedin_favoriteslist.PNG)
+    View account version
+    ![ View account with list of favorited stories for a logged in user](./readme_images/image12_loggedin_favoriteslist.PNG)
 
 
 - [o] Our form for creating stories requires you to add the publication date,update this to automatically save the publication date as the day thestory was first published (maybe you could then add a field to showwhen the story was updated).
